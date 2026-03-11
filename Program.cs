@@ -7,7 +7,7 @@ internal class Program
         List<Leitor> leitores = new List<Leitor>();
 
         Menu menu = new Menu();
-        Console.WriteLine("Digite o numero da sua opção: ");
+        Console.WriteLine("\nDigite o numero da sua opção");
         menu.ListarOpções();
         short opcaoEscolhida;
 
@@ -24,15 +24,21 @@ internal class Program
             switch (opcaoEscolhida)
             {
                 case 1:
+                    Console.WriteLine("\n---Você escolheu a opção de leitores---");
+                    Console.WriteLine("Digite o numero da sua opção");
                     menu.ListarOpçõesLeitor();
+                    Console.Write("Escolha uma opção: ");
                     return;
 
                 case 2:
+                    Console.WriteLine("\n---Você escolheu a opção de livros---");
+                    Console.WriteLine("Digite o numero da sua opção");
                     menu.ListarOpçõesLivro();
+                    Console.Write("Escolha uma opção: ");
                     return;
 
-                default:
-                    Console.WriteLine("Opção inválida.");
+                default:   
+                    Console.WriteLine("Opção inválida.");  
                     break;
             }
         }
