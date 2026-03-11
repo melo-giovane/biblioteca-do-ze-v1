@@ -1,9 +1,11 @@
 namespace Biblioteca;
 public class Leitor
 {
-public string Nome;
-public byte Idade;
-public List<Livro> LivrosLeitor = new List<Livro>();
+    public string Cpf;
+    public string Nome;
+    public byte Idade;
+    public string Contato;
+    public List<Livro> LivrosLeitor = new List<Livro>();
     public void AdiconarLivro(Livro livro)
     {
         this.LivrosLeitor.Add(livro);

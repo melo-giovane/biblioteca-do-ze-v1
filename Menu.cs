@@ -1,9 +1,8 @@
 public class Menu
 {
-    List<string> opcoes = ["Leitor", "Livros"];
+    List<string> opcoes = ["Leitor", "Livros", "Encerrar programa"];
     List<string> opcoesLeitor = ["Adicionar", "Listar", "Editar", "Remover", "Doar"];
     List<string> opcoesLivro = ["Adicionar", "Listar", "Editar", "Remover"];
-
     List<string> dadosLeitor = ["Nome", "Idade", "Email", "Telefone"];
 
 
@@ -35,7 +34,15 @@ public class Menu
             count ++;
         }
     }
-
+    
+    public void CadastroLeitor()
+    {
+       foreach (string dado in dadosLeitor)
+       {
+        Console.Write($"Digite o {dado} do leitor: ");
+        string resposta = Console.ReadLine();
+       }
+    }
 
 
 
