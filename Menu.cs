@@ -7,7 +7,7 @@ public class Menu
 
 
 
-    public void ListarOpções()
+    public void ListarOpcoes()
     {
         short count = 0;
         foreach(string opcao in opcoes)
@@ -16,7 +16,7 @@ public class Menu
             count ++;
         }
     }
-    public void ListarOpçõesLeitor()
+    public void ListarOpcoesLeitor()
     {
         short count = 0;
         foreach(string opcao in opcoesLeitor)
@@ -25,7 +25,7 @@ public class Menu
             count ++;
         }
     }
-    public void ListarOpçõesLivro()
+    public void ListarOpcoesLivro()
     {
         short count = 0;
         foreach(string opcao in opcoesLivro)
@@ -34,16 +34,4 @@ public class Menu
             count ++;
         }
     }
-    
-    public void CadastroLeitor()
-    {
-       foreach (string dado in dadosLeitor)
-       {
-        Console.Write($"Digite o {dado} do leitor: ");
-        string resposta = Console.ReadLine();
-       }
-    }
-
-
-
 }
