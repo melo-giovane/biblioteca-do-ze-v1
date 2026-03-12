@@ -67,7 +67,45 @@ internal class Program
 
                             leitores.Add(novoLeitor);
                             Console.WriteLine($"\n{novoLeitor.Nome} cadastrado com sucesso!");
+                        }
 
+                        if (opcaoOperacao == 2)//Listar leitores
+                        {
+                            Console.WriteLine("\n---Lista de Leitores---");
+                            Console.WriteLine("1 - Listar todos os leitores e seus livros");
+                            Console.WriteLine("2 - Listar leitor específico e seus livros");
+                            Console.Write("Escolha uma opção: ");
+                            
+                            if (short.TryParse(Console.ReadLine(), out short opcaoListar))
+                            {
+                                if (opcaoListar == 1) //Listar Todos
+                                {
+                                    if(leitores.Count == 0)
+                                    {
+                                        Console.WriteLine("Nenhum leitor cadastrado.");
+                                    }
+                                    foreach (var leitor in leitores)
+                                    {
+                                        Console.WriteLine($"\nLeitor: {leitor.Nome} - CPF: {leitor.Cpf} - Idade: {leitor.Idade} - Contato: {leitor.Contato}");
+                                    }
+                                }
+
+                                if (opcaoListar == 2) // Listar específico
+                                {
+                                    Console.Write("Digite o CPF do leitor que deseja consultar: ");
+                                    string cpfConsulta = Console.ReadLine();
+                                    Leitor leitorEncontrado = leitores.Find(l => l.Cpf == cpfConsulta);
+
+                                    if (leitorEncontrado != null)
+                                    {
+                                        Console.WriteLine($"\nLeitor: {leitorEncontrado.Nome} - CPF: {leitorEncontrado.Cpf} - Idade: {leitorEncontrado.Idade} - Contato: {leitorEncontrado.Contato}");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Leitor não encontrado.");
+                                    }
+                                }
+                            }
                         }
 
                         break;
