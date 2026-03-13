@@ -3,9 +3,7 @@ public class Menu
     List<string> opcoes = ["Leitor", "Livros", "Encerrar programa"];
     List<string> opcoesLeitor = ["Adicionar", "Listar", "Editar", "Remover", "Doar"];
     List<string> opcoesLivro = ["Adicionar", "Listar", "Editar", "Remover"];
-    List<string> dadosLeitor = ["Nome", "Idade", "Email", "Telefone"];
-
-
+    
 
     public void ListarOpcoes()
     {
