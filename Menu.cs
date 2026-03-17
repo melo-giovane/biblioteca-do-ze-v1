@@ -3,33 +3,50 @@ public class Menu
     List<string> opcoes = ["Leitor", "Livros", "Encerrar programa"];
     List<string> opcoesLeitor = ["Adicionar", "Listar", "Editar", "Remover", "Doar"];
     List<string> opcoesLivro = ["Adicionar", "Listar", "Editar", "Remover"];
-    
 
-    public void ListarOpcoes()
+    private short ExibirMenu(List<string> opcoes)
     {
-        short count = 0;
-        foreach(string opcao in opcoes)
+        short opcaoEscolhida;
+
+        while (true)
         {
-            Console.WriteLine($"{count+1} - {opcao};");
-            count ++;
+            Console.WriteLine("\nDigite o numero da sua opção");
+
+            for (int i = 0; i < opcoes.Count; i++)
+            {
+                Console.WriteLine($"{i + 1} - {opcoes[i]}");
+            }
+
+            Console.Write("Escolha uma opção: ");
+
+            if (!short.TryParse(Console.ReadLine(), out opcaoEscolhida))
+            {
+                Console.WriteLine("Digite um número válido.");
+                continue;
+            }
+
+            if (opcaoEscolhida < 1 || opcaoEscolhida > opcoes.Count)
+            {
+                Console.WriteLine("Opção fora do intervalo.");
+                continue;
+            }
+
+            return opcaoEscolhida;
         }
     }
-    public void ListarOpcoesLeitor()
+
+    public short MenuPrincipal()
     {
-        short count = 0;
-        foreach(string opcao in opcoesLeitor)
-        {
-            Console.WriteLine($"{count+1} - {opcao};");
-            count ++;
-        }
+        return ExibirMenu(opcoes);
     }
-    public void ListarOpcoesLivro()
+
+    public short MenuLeitor()
     {
-        short count = 0;
-        foreach(string opcao in opcoesLivro)
-        {
-            Console.WriteLine($"{count+1} - {opcao};");
-            count ++;
-        }
+        return ExibirMenu(opcoesLeitor);
+    }
+
+    public short MenuLivro()
+    {
+        return ExibirMenu(opcoesLivro);
     }
 }
