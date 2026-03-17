@@ -2,10 +2,10 @@ namespace Biblioteca;
 
 public class Leitor
 {
-    public string Cpf;
-    public string Nome;
-    public byte Idade;
-    public string Contato;
+    public string cpf;
+    public string nome;
+    public byte idade;
+    public string contato;
     public List<Livro> LivrosLeitor = new List<Livro>();
     public void AdiconarLivro(Livro livro)
     {
@@ -15,15 +15,49 @@ public class Leitor
     {
         this.LivrosLeitor.Remove(livro);
     }
-    public void DoarLivro(Livro livroDoado, Leitor leitorDestino)
+    public void DoarLivro(List<Leitor> leitores)
     {
-        this.RemoverLivro(livroDoado);
-        leitorDestino.AdiconarLivro(livroDoado);
+
+
+        Console.WriteLine("Digite o cpf do recebedor");
+        string cpfRecebedor = Console.ReadLine();
+
+        Leitor? recebedor = leitores.Find(x => x.cpf == cpfRecebedor);
+
+
+
+        Console.WriteLine("Digite o nome do livro: ");
+        string livro = Console.ReadLine();
+
+        Livro? livroDoado = this.LivrosLeitor.Find(x => x.Titulo == livro);
+
+        if (recebedor! != null && livroDoado! != null)
+        {
+            this.RemoverLivro(livroDoado);
+            recebedor.AdiconarLivro(livroDoado);
+        }
     }
 
-    public Leitor cadastroLeitor(List<Leitor> listaDeLeitores)
+    public Leitor(string cpf, string nome, byte idade, string contato)
     {
-        Leitor novoLeitor = new Leitor();
+        this.cpf = cpf;
+        this.nome = nome;
+        this.idade = idade;
+        this.contato = contato;
+    }
+    public Leitor()
+    {
+        this.cpf = string.Empty;
+        this.nome = string.Empty;
+        this.idade = 0;
+        this.contato = string.Empty;
+    }
+
+
+
+    public Leitor CadastroLeitor(List<Leitor> listaDeLeitores)
+    {
+
         Console.WriteLine("\n---Cadastro de Leitor---");
 
         while (true) //Validação do CPF para garantir que o identificador tenha exatamente 11 dígitos
@@ -35,7 +69,7 @@ public class Leitor
             if (!string.IsNullOrEmpty(cpfDigitado) && cpfDigitado.Length == 11)
             {
 
-                bool cpfInvalido = listaDeLeitores.Exists(l => l.Cpf == cpfDigitado);
+                bool cpfInvalido = listaDeLeitores.Exists(l => l.cpf == cpfDigitado);
                 if (cpfInvalido)
                 {
                     Console.WriteLine("CPF já cadastrado! Por favor, insira um CPF diferente.");
@@ -43,7 +77,7 @@ public class Leitor
                 }
                 else
                 {
-                    novoLeitor.Cpf = cpfDigitado;
+                    cpf = cpfDigitado;
                     break;
                 }
             }
@@ -57,7 +91,7 @@ public class Leitor
 
             if (!string.IsNullOrWhiteSpace(entrada))
             {
-                novoLeitor.Nome = entrada;
+                nome = entrada;
                 break;
             }
             Console.WriteLine("O nome não pode estar vazio!");
@@ -73,24 +107,24 @@ public class Leitor
                 Console.WriteLine("Insira um valor válido.");
                 continue;
             }
-            novoLeitor.Idade = idade;
+            idade = idade;
             break;
         }
 
         while (true)
         {
             Console.Write("Digite o contato do leitor (xx xxxxx-xxxx): ");
-            novoLeitor.Contato = Console.ReadLine();
-            if (!string.IsNullOrEmpty(novoLeitor.Contato) && novoLeitor.Contato.Length == 13)
+            contato = Console.ReadLine();
+            if (!string.IsNullOrEmpty(contato) && contato.Length == 13)
             {
                 break;
             }
             Console.WriteLine("Contato escrito de forma errada.");
         }
-        return novoLeitor;
+        return new Leitor(cpf, nome, idade, contato);
     }
 
-    public void listarLeitores(List<Leitor> listaDeLeitores)
+    public static void ListarLeitores(List<Leitor> listaDeLeitores)
     {
         if (listaDeLeitores.Count == 0)
         {
@@ -108,9 +142,9 @@ public class Leitor
     public void ExibirDetalhes() // Listagem de leitor específico
     {
         Console.WriteLine("----------------------------------");
-        Console.WriteLine($"Nome: {this.Nome}");
-        Console.WriteLine($"CPF: {this.Cpf} || Idade: {this.Idade}");
-        Console.WriteLine($"Contato: {this.Contato}");
+        Console.WriteLine($"Nome: {this.nome}");
+        Console.WriteLine($"CPF: {this.cpf} || Idade: {this.idade}");
+        Console.WriteLine($"Contato: {this.contato}");
         if (LivrosLeitor.Count > 0)
         {
             Console.WriteLine($"Livros: {string.Join(", ", LivrosLeitor.Select(l => l.Titulo))}");

@@ -2,6 +2,7 @@
 
 internal class Program
 {
+    static List<Leitor> leitores = new List<Leitor>();
     static void Main(string[] args)
     {
         Menu menu = new Menu();
@@ -41,11 +42,15 @@ internal class Program
             switch (opcao)
             {
                 case 1:
-                    Console.WriteLine("Adicionar leitor");
+                    //Cadastrar leitor
+                    Leitor novoLeitor = new Leitor().CadastroLeitor(leitores);
+                    leitores.Add(novoLeitor);
+                    Console.WriteLine("Leitor cadastrado com sucesso!");
                     break;
 
                 case 2:
-                    Console.WriteLine("Listar leitores");
+                    Leitor x = new Leitor();
+                    Leitor.ListarLeitores(leitores);
                     break;
 
                 case 3:
@@ -57,7 +62,13 @@ internal class Program
                     break;
 
                 case 5:
-                    Console.WriteLine("Doar livro");
+                    Console.WriteLine("Digite o cpf do doador");
+                    string cpfDoador = Console.ReadLine();
+                    Leitor? doador = leitores.Find(x => x.cpf == cpfDoador);
+                    if(doador! != null)
+                    {
+                        doador.DoarLivro(leitores);
+                    }
                     break;
 
                 default:
