@@ -100,14 +100,14 @@ public class Leitor
         while (true)
         {
             Console.Write("Digite a idade do leitor: ");
-            byte.TryParse(Console.ReadLine(), out byte idade);
+            byte.TryParse(Console.ReadLine(), out byte idadeInserida);
 
-            if (idade <= 0 || idade == null)
+            if (idadeInserida <= 0 || idadeInserida == null)
             {
                 Console.WriteLine("Insira um valor válido.");
                 continue;
             }
-            idade = idade;
+            idade = idadeInserida;
             break;
         }
 
@@ -152,6 +152,42 @@ public class Leitor
         else
         {
             Console.WriteLine("Livros: Nenhum livro.");
+        }
+    }
+
+    public void editarLeitor()
+    {
+        Console.WriteLine("Digite o que deseja alterar:");
+        Console.WriteLine("1 - Nome");
+        Console.WriteLine("2 - Idade");
+        Console.WriteLine("3 - Contato");
+        byte opcaoEditar = byte.TryParse(Console.ReadLine(), out byte result) ? result : (byte)0;
+        switch (opcaoEditar)
+        {
+            case 1:
+                Console.WriteLine("Digite o novo nome:");
+                string nomeNovo = Console.ReadLine();
+                this.nome = nomeNovo;
+                Console.WriteLine("Nome editado com sucesso!");
+                break;
+
+            case 2:
+                Console.WriteLine("Digite a nova idade:");
+                byte.TryParse(Console.ReadLine(), out byte idadeNova);
+                this.idade = idadeNova;
+                Console.WriteLine("Idade editada com sucesso!");
+                break;
+
+            case 3:
+                Console.WriteLine("Digite o novo contato:");
+                string contatoNovo = Console.ReadLine();
+                this.contato = contato;
+                Console.WriteLine("Contato editado com sucesso!");
+                break;
+
+            default:
+                Console.WriteLine("Opção inválida.");
+                break;
         }
     }
 }

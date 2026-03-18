@@ -1,7 +1,7 @@
 public class Menu
 {
     List<string> opcoes = ["Leitor", "Livros", "Encerrar programa"];
-    List<string> opcoesLeitor = ["Adicionar", "Listar", "Editar", "Remover", "Doar"];
+    List<string> opcoesLeitor = ["Adicionar", "Listar todos", "Exibir Leitor", "Editar leitor", "Excluir leitor", "Incluir livro", "Editar livro", "Doar", "Remover livro", "Procurar livro"];
     List<string> opcoesLivro = ["Adicionar", "Listar", "Editar", "Remover"];
 
     private short ExibirMenu(List<string> opcoes)
