@@ -1,8 +1,6 @@
 public class Menu
 {
-    List<string> opcoes = ["Leitor", "Livros", "Encerrar programa"];
-    List<string> opcoesLeitor = ["Adicionar", "Listar todos", "Exibir Leitor", "Editar leitor", "Excluir leitor", "Incluir livro", "Editar livro", "Doar", "Remover livro", "Procurar livro"];
-    List<string> opcoesLivro = ["Adicionar", "Listar", "Editar", "Remover"];
+    List<string> opcoesLeitor = ["Encerrar operação", "Cadastrar leitor", "Listar todos", "Exibir Leitor", "Editar leitor", "Excluir leitor", "Incluir livro", "Editar livro", "Doar", "Remover livro", "Procurar livro"];
 
     private short ExibirMenu(List<string> opcoes)
     {
@@ -14,7 +12,7 @@ public class Menu
 
             for (int i = 0; i < opcoes.Count; i++)
             {
-                Console.WriteLine($"{i + 1} - {opcoes[i]}");
+                Console.WriteLine($"{i} - {opcoes[i]}");
             }
 
             Console.Write("Escolha uma opção: ");
@@ -25,7 +23,7 @@ public class Menu
                 continue;
             }
 
-            if (opcaoEscolhida < 1 || opcaoEscolhida > opcoes.Count)
+            if (opcaoEscolhida < 0 || opcaoEscolhida >= opcoes.Count)
             {
                 Console.WriteLine("Opção fora do intervalo.");
                 continue;
@@ -35,18 +33,8 @@ public class Menu
         }
     }
 
-    public short MenuPrincipal()
-    {
-        return ExibirMenu(opcoes);
-    }
-
     public short MenuLeitor()
     {
         return ExibirMenu(opcoesLeitor);
-    }
-
-    public short MenuLivro()
-    {
-        return ExibirMenu(opcoesLivro);
     }
 }

@@ -15,23 +15,23 @@ internal class Program
 
             switch (opcao)
             {
+                case 0:
+                    Console.WriteLine("\nTem certeza que deseja encerrar a operação?...");
+                    break;
+
                 case 1:
-                    //Cadastrar leitor
                     Leitor novoLeitor = new Leitor().CadastroLeitor(leitores);
                     leitores.Add(novoLeitor);
-                    Console.WriteLine("Leitor cadastrado com sucesso!");
+                    Console.WriteLine("\nLeitor cadastrado com sucesso!");
                     break;
 
                 case 2:
-                    //Listar todos os leitores
                     Leitor x = new Leitor();
                     Leitor.ListarLeitores(leitores);
                     break;
 
                 case 3:
-                    //Exibir leitor específico
-                    Console.WriteLine("Exibir leitor específico:");
-                    Console.WriteLine("Digite o cpf do leitor que deseja exibir:");
+                    Console.Write("\nDigite o cpf do leitor que deseja exibir: ");
                     string cpfLeitor = Console.ReadLine();
                     Leitor? leitor = leitores.Find(x => x.cpf == cpfLeitor);
                     if (leitor! != null)
@@ -41,8 +41,7 @@ internal class Program
                     break;
 
                 case 4:
-                    Console.WriteLine("Editar leitor");
-                    Console.WriteLine("Digite o cpf do leitor que deseja editar:");
+                    Console.Write("\nDigite o cpf do leitor que deseja editar: ");
                     string leitorEditar = Console.ReadLine();
                     Leitor? editar = leitores.Find(x => x.cpf == leitorEditar);
                     if (editar! != null)
@@ -52,8 +51,7 @@ internal class Program
                     break;
 
                 case 5:
-                    Console.WriteLine("Excluir leitor");
-                    Console.WriteLine("Digite o cpf do leitor que deseja excluir:");
+                    Console.Write("\nDigite o cpf do leitor que deseja excluir: ");
                     string cpfExcluir = Console.ReadLine();
                     Leitor? excluir = leitores.Find(x => x.cpf == cpfExcluir);
                     if (excluir! != null)
@@ -64,7 +62,7 @@ internal class Program
                     break;
 
                 case 6:
-                    Console.WriteLine("Digite o cpf do leitor");
+                    Console.Write("\nDigite o cpf do leitor: ");
                     string dono = Console.ReadLine();
                     Leitor? donoLeitor = leitores.Find(x => x.cpf == dono);
                     if (donoLeitor! != null)
@@ -77,13 +75,12 @@ internal class Program
                     break;
 
                 case 7:
-                    Console.WriteLine("Editar livro");
-                    Console.WriteLine("Digite o cpf do leitor que possui o livro:");
+                    Console.Write("\nDigite o cpf do leitor que possui o livro: ");
                     string cpfPropietario = Console.ReadLine();
                     Leitor? proprietario = leitores.Find(x => x.cpf == cpfPropietario);
                     if (proprietario! != null)
                     {
-                        Console.WriteLine("Digite o título do livro que deseja editar:");
+                        Console.WriteLine("\nDigite o título do livro que deseja editar: ");
                         string tituloLivro = Console.ReadLine();
                         Livro? livroEditar = proprietario.LivrosLeitor.Find(x => x.Titulo == tituloLivro);
                         if (livroEditar! != null)
@@ -95,8 +92,7 @@ internal class Program
                     break;
 
                 case 8:
-                    Console.WriteLine("Doar livro");
-                    Console.WriteLine("Digite o cpf do doador");
+                    Console.Write("\nDigite o cpf do doador: ");
                     string cpfDoador = Console.ReadLine();
                     Leitor? doador = leitores.Find(x => x.cpf == cpfDoador);
                     if (doador! != null)
@@ -106,13 +102,12 @@ internal class Program
                     break;
 
                 case 9:
-                    Console.WriteLine("Remover livro");
-                    Console.WriteLine("Digite o cpf do leitor que possui o livro:");
+                    Console.Write("\nDigite o cpf do leitor que possui o livro: ");
                     string cpf3 = Console.ReadLine();
                     Leitor? proprietarioRemover = leitores.Find(x => x.cpf == cpf3);
                     if (proprietarioRemover! != null)
                     {
-                        Console.WriteLine("Digite o título do livro que deseja remover:");
+                        Console.Write("\nDigite o título do livro que deseja remover: ");
                         string tituloLivro = Console.ReadLine();
                         Livro? livroRemover = proprietarioRemover.LivrosLeitor.Find(x => x.Titulo == tituloLivro);
                         if (livroRemover! != null)
@@ -124,8 +119,7 @@ internal class Program
                     break;
 
                 case 10:
-                    Console.WriteLine("Procurar livro");
-                    Console.WriteLine("Digite o título do livro que deseja procurar:");
+                    Console.Write("\nDigite o título do livro que deseja procurar: ");
                     string tituloProcurar = Console.ReadLine();
                     Console.WriteLine($"Título: {tituloProcurar} - Leitores:");
                     foreach (Leitor l in leitores)
@@ -149,47 +143,14 @@ internal class Program
                     break;
             }
 
-            Console.WriteLine("\nDigite 0 para voltar ou qualquer outra tecla para continuar...");
+            Console.WriteLine("\nDigite 0 para encerrar ou qualquer outra tecla para continuar...");
             if (Console.ReadLine() == "0")
-                break;
-        }
-
-        static void MenuLivro(Menu menu)
-        {
-            while (true)
             {
-                short opcao = menu.MenuLivro();
-
-                switch (opcao)
-                {
-                    case 1:
-                        Console.WriteLine("Adicionar livro");
-                        Livro novoLivro = new Livro().CadastroLivro();
-                        livros.Add(novoLivro);
-                        Console.WriteLine("Livro cadastrado com sucesso!");
-                        break;
-
-                    case 2:
-                        Console.WriteLine("Listar livros");
-                        break;
-
-                    case 3:
-                        Console.WriteLine("Editar livro");
-                        break;
-
-                    case 4:
-                        Console.WriteLine("Remover livro");
-                        break;
-
-                    default:
-                        Console.WriteLine("Opção inválida.");
-                        break;
-                }
-
-                Console.WriteLine("\nDigite 0 para voltar ou qualquer outra tecla para continuar...");
-                if (Console.ReadLine() == "0")
-                    break;
+                Console.WriteLine("Encerrando programa...");
+                break;
             }
+                
         }
+
     }
 }

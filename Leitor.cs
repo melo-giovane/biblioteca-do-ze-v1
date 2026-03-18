@@ -19,7 +19,7 @@ public class Leitor
     {
 
 
-        Console.WriteLine("Digite o cpf do recebedor");
+        Console.Write("Digite o cpf do recebedor: ");
         string cpfRecebedor = Console.ReadLine();
 
         Leitor? recebedor = leitores.Find(x => x.cpf == cpfRecebedor);
@@ -60,7 +60,7 @@ public class Leitor
 
         Console.WriteLine("\n---Cadastro de Leitor---");
 
-        while (true) //Validação do CPF para garantir que o identificador tenha exatamente 11 dígitos
+        while (true)
         {
             Console.Write("Digite o CPF do leitor (11 dígitos, sem pontuação): ");
             string cpfDigitado = Console.ReadLine();
@@ -139,7 +139,7 @@ public class Leitor
         }
     }
 
-    public void ExibirDetalhes() // Listagem de leitor específico
+    public void ExibirDetalhes()
     {
         Console.WriteLine("----------------------------------");
         Console.WriteLine($"Nome: {this.nome}");
@@ -157,10 +157,11 @@ public class Leitor
 
     public void editarLeitor()
     {
-        Console.WriteLine("Digite o que deseja alterar:");
+        Console.WriteLine("Escolha o campo que deseja alterar");
         Console.WriteLine("1 - Nome");
         Console.WriteLine("2 - Idade");
         Console.WriteLine("3 - Contato");
+        Console.Write("Digite o numero da opção: ");
         byte opcaoEditar = byte.TryParse(Console.ReadLine(), out byte result) ? result : (byte)0;
         switch (opcaoEditar)
         {
@@ -181,7 +182,7 @@ public class Leitor
             case 3:
                 Console.WriteLine("Digite o novo contato:");
                 string contatoNovo = Console.ReadLine();
-                this.contato = contato;
+                this.contato = contatoNovo;
                 Console.WriteLine("Contato editado com sucesso!");
                 break;
 
